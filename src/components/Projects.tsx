@@ -217,7 +217,7 @@ export default function Projects() {
         "Tailwind CSS",
         "Framer Motion"
       ],
-      videoUrl: "/sneakarvid1.mp4",
+      videoUrl: "/sneakarvid1-compressed.mp4",
       imageUrl: "/boldbrands.png",
       link: "https://sneakar.io",
       secondaryLink: {
@@ -251,7 +251,7 @@ export default function Projects() {
         "Stripe",
         "Digital Ocean"
       ],
-      videoUrl: "/meridex2.mp4",
+      videoUrl: "/meridex2-compressed.mp4",
       link: "https://meridex.ai",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/meridex",
@@ -283,7 +283,7 @@ export default function Projects() {
         "OpenAI"
       ],
       imageUrl: "/ovationari1.png",
-      link: "https://ovation.digital",
+      link: "https://ovationdigitalsolutions.com",
     },
     {
       title: "Crowd Connect RSVP",
@@ -307,10 +307,14 @@ export default function Projects() {
         "Tailwind CSS"
       ],
       imageUrl: "/crowdconnectari1.jpeg",
-      link: "https://presentation-sc.vercel.app/admin",
+      link: "https://www.crowdconnectrsvp.com",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/crowdconnect",
         text: "View Case Study"
+      },
+      tertiaryLink: {
+        url: "https://presentation-sc.vercel.app/admin",
+        text: "View Demo Site"
       }
     }
   ];
