@@ -139,20 +139,19 @@ function ProjectSection({
                 </div>
               </div>
 
-              <div>
+              {/* Desktop Buttons */}
+              <div className="hidden sm:block">
                 <div className="flex items-center gap-3 mb-3">
                   {link && (
                     <a 
                       href={link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-[180px] h-12
+                      className="interactive group inline-flex items-center justify-center w-[180px] h-12
                                bg-slate-900 text-white text-sm font-medium
                                rounded-lg whitespace-nowrap
-                               hover:bg-slate-800 
-                               dark:bg-slate-800 dark:hover:bg-slate-700 
-                               transition-all duration-200 
-                               hover:translate-y-[-1px]"
+                               hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 
+                               transition-all duration-200 hover:translate-y-[-1px]"
                     >
                       View Main Site <span className="ml-2">→</span>
                     </a>
@@ -162,14 +161,13 @@ function ProjectSection({
                       href={secondaryLink.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-[180px] h-12
+                      className="interactive group inline-flex items-center justify-center w-[180px] h-12
                                border border-slate-200 dark:border-slate-700 
                                text-slate-700 dark:text-slate-300 text-sm font-medium
                                rounded-lg whitespace-nowrap
                                hover:bg-slate-100 dark:hover:bg-slate-800/50 
                                hover:border-slate-300 dark:hover:border-slate-600
-                               transition-all duration-200 
-                               hover:translate-y-[-1px]"
+                               transition-all duration-200 hover:translate-y-[-1px]"
                     >
                       {secondaryLink.text} <span className="ml-2">→</span>
                     </a>
@@ -177,14 +175,13 @@ function ProjectSection({
                   {videoUrl && title !== "Sneakar.io & Bold Brands" && (
                     <button
                       onClick={() => setIsVideoModalOpen(true)}
-                      className="inline-flex items-center justify-center w-[180px] h-12
+                      className="interactive group inline-flex items-center justify-center w-[180px] h-12
                                border border-slate-200 dark:border-slate-700 
                                text-slate-700 dark:text-slate-300 text-sm font-medium
                                rounded-lg whitespace-nowrap
                                hover:bg-slate-100 dark:hover:bg-slate-800/50 
                                hover:border-slate-300 dark:hover:border-slate-600
-                               transition-all duration-200 
-                               hover:translate-y-[-1px]"
+                               transition-all duration-200 hover:translate-y-[-1px]"
                     >
                       Watch Demo <span className="ml-2">→</span>
                     </button>
@@ -192,6 +189,68 @@ function ProjectSection({
                 </div>
                 {tertiaryLink && (
                   <div className="flex justify-start pl-[30px]">
+                    <a 
+                      href={tertiaryLink.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-slate-600 dark:text-slate-400 
+                               hover:text-slate-900 dark:hover:text-slate-200 
+                               text-sm transition-colors"
+                    >
+                      {tertiaryLink.text} <span className="ml-1">→</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Buttons */}
+              <div className="sm:hidden space-y-3 px-4">
+                {link && (
+                  <a 
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-3 px-4
+                             bg-slate-900 text-white text-center text-sm font-medium
+                             rounded-lg whitespace-nowrap
+                             hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 
+                             transition-colors"
+                  >
+                    View Main Site
+                  </a>
+                )}
+                {secondaryLink && (
+                  <a 
+                    href={secondaryLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-3 px-4
+                             border border-slate-200 dark:border-slate-700 
+                             text-slate-700 dark:text-slate-300 text-center text-sm font-medium
+                             rounded-lg whitespace-nowrap
+                             hover:bg-slate-100 dark:hover:bg-slate-800/50 
+                             hover:border-slate-300 dark:hover:border-slate-600
+                             transition-colors"
+                  >
+                    {secondaryLink.text}
+                  </a>
+                )}
+                {videoUrl && title !== "Sneakar.io & Bold Brands" && (
+                  <button
+                    onClick={() => setIsVideoModalOpen(true)}
+                    className="block w-full py-3 px-4
+                             border border-slate-200 dark:border-slate-700 
+                             text-slate-700 dark:text-slate-300 text-center text-sm font-medium
+                             rounded-lg whitespace-nowrap
+                             hover:bg-slate-100 dark:hover:bg-slate-800/50 
+                             hover:border-slate-300 dark:hover:border-slate-600
+                             transition-colors"
+                  >
+                    Watch Demo
+                  </button>
+                )}
+                {tertiaryLink && (
+                  <div className="flex justify-center">
                     <a 
                       href={tertiaryLink.url}
                       target="_blank"
@@ -278,7 +337,7 @@ export default function Projects() {
       ],
       imageUrl: "/meridex.png",
       videoUrl: "/meridexarivid1.mp4",
-      link: "https://meridex.ai",
+      link: "https://meridexai.com",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/meridex",
         text: "View Case Study"
@@ -333,13 +392,13 @@ export default function Projects() {
         "Tailwind CSS"
       ],
       imageUrl: "/crowdconnectari1.jpeg",
-      link: "https://presentation-sc.vercel.app/admin",
+      link: "https://www.crowdconnectrsvp.com",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/crowdconnect",
         text: "View Case Study"
       },
       tertiaryLink: {
-        url: "https://presentation-sc.vercel.app/admin",
+        url: "https://presentation-sc.vercel.app/",
         text: "View Demo Site"
       }
     }
