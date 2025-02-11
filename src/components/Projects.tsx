@@ -346,14 +346,14 @@ export default function Projects() {
     {
       title: "Ovation Digital Solutions",
       subtitle: "Professional Web Development & AI Integration",
-      description: "Building innovative digital products with a focus on AI integration, real estate technology, and enterprise solutions. Specializing in full-stack web applications and delivering cutting-edge solutions for businesses across various sectors.",
+      description: "A professional software development company specializing in AI integration, WebAR solutions, E-commerce platforms, and enterprise-level applications. We partner with businesses to create innovative digital products that leverage cutting-edge technology to solve complex challenges and drive growth.",
       features: [
-        "Custom software development",
-        "AI integration solutions",
-        "Real estate technology",
-        "Enterprise platforms",
-        "Web development",
-        "Cloud infrastructure"
+        "AI & LLM Integration Solutions",
+        "WebAR & 3D Visualization",
+        "E-commerce Development",
+        "Enterprise Software Solutions",
+        "Full-Stack Web Applications",
+        "Cloud Infrastructure & DevOps"
       ],
       techStack: [
         "Next.js",
