@@ -217,7 +217,7 @@ export default function Projects() {
         "Tailwind CSS",
         "Framer Motion"
       ],
-      videoUrl: "/sneakarvid1-compressed.mp4",
+      videoUrl: "/newsneakararivid1.mp4",
       imageUrl: "/boldbrands.png",
       link: "https://sneakar.io",
       secondaryLink: {
@@ -251,7 +251,7 @@ export default function Projects() {
         "Stripe",
         "Digital Ocean"
       ],
-      videoUrl: "/meridex2-compressed.mp4",
+      videoUrl: "/",
       link: "https://meridex.ai",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/meridex",
