@@ -50,6 +50,19 @@ function ProjectSection({
         {/* Media Section */}
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-6">
+            {title === "Sneakar.io & Bold Brands" && (
+              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 shadow-2xl">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                >
+                  <source src="/newsneakararivid1.mp4" type="video/mp4" />
+                </video>
+              </div>
+            )}
             {imageUrl && (
               <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 shadow-2xl">
                 <Image
@@ -161,7 +174,7 @@ function ProjectSection({
                       {secondaryLink.text} <span className="ml-2">→</span>
                     </a>
                   )}
-                  {videoUrl && (
+                  {videoUrl && title !== "Sneakar.io & Bold Brands" && (
                     <button
                       onClick={() => setIsVideoModalOpen(true)}
                       className="inline-flex items-center justify-center w-[180px] h-12
