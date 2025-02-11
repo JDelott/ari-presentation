@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
+import VideoModal from './VideoModal';
 
 interface ProjectCardProps {
   title: string;
@@ -30,6 +32,8 @@ function ProjectSection({
   secondaryLink,
   tertiaryLink
 }: ProjectCardProps) {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
   return (
     <div className="py-20 border-b border-slate-200 dark:border-slate-800">
       <div className="space-y-12">
@@ -46,20 +50,6 @@ function ProjectSection({
         {/* Media Section */}
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-6">
-            {videoUrl && (
-              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 shadow-2xl">
-                <video
-                  className="w-full h-full object-contain"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            )}
             {imageUrl && (
               <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 shadow-2xl">
                 <Image
@@ -171,6 +161,21 @@ function ProjectSection({
                       {secondaryLink.text} <span className="ml-2">→</span>
                     </a>
                   )}
+                  {videoUrl && (
+                    <button
+                      onClick={() => setIsVideoModalOpen(true)}
+                      className="inline-flex items-center justify-center w-[180px] h-12
+                               border border-slate-200 dark:border-slate-700 
+                               text-slate-700 dark:text-slate-300 text-sm font-medium
+                               rounded-lg whitespace-nowrap
+                               hover:bg-slate-100 dark:hover:bg-slate-800/50 
+                               hover:border-slate-300 dark:hover:border-slate-600
+                               transition-all duration-200 
+                               hover:translate-y-[-1px]"
+                    >
+                      Watch Demo <span className="ml-2">→</span>
+                    </button>
+                  )}
                 </div>
                 {tertiaryLink && (
                   <div className="flex justify-start pl-[30px]">
@@ -191,6 +196,14 @@ function ProjectSection({
           </div>
         </div>
       </div>
+
+      {videoUrl && (
+        <VideoModal
+          isOpen={isVideoModalOpen}
+          closeModal={() => setIsVideoModalOpen(false)}
+          videoUrl={videoUrl}
+        />
+      )}
     </div>
   );
 }
@@ -217,7 +230,6 @@ export default function Projects() {
         "Tailwind CSS",
         "Framer Motion"
       ],
-      videoUrl: "/newsneakararivid1.mp4",
       imageUrl: "/boldbrands.png",
       link: "https://sneakar.io",
       secondaryLink: {
@@ -251,7 +263,8 @@ export default function Projects() {
         "Stripe",
         "Digital Ocean"
       ],
-      videoUrl: "/",
+      imageUrl: "/meridex.png",
+      videoUrl: "/meridexarivid1.mp4",
       link: "https://meridex.ai",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/meridex",
@@ -307,7 +320,7 @@ export default function Projects() {
         "Tailwind CSS"
       ],
       imageUrl: "/crowdconnectari1.jpeg",
-      link: "https://www.crowdconnectrsvp.com",
+      link: "https://presentation-sc.vercel.app/admin",
       secondaryLink: {
         url: "https://ovationdigitalsolutions.com/case-studies/crowdconnect",
         text: "View Case Study"
