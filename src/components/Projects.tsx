@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react'
 import { useState } from 'react';
 import Image from 'next/image';
 import VideoModal from './VideoModal';
@@ -68,7 +68,7 @@ function ProjectSection({
                 <Image
                   src={imageUrl}
                   alt={title}
-                  fill
+                  fill={true}
                   className="object-contain rounded-2xl"
                   priority
                   sizes="(max-width: 768px) 100vw, 80vw"

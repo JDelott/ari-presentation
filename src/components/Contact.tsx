@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react'
 export default function Contact() {
   return (
     <section className="py-12 sm:py-16 lg:py-20" id="contact">
