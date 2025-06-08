@@ -1,5 +1,7 @@
 'use client'
 
+'use client'
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 
@@ -124,7 +126,7 @@ const ArrowIcon = () => (
 
 // Main Component
 const Faq = () => {
-  const [openItemId, setOpenItemId] = useState<string | null>(null);
+  const [openItemId, setOpenItemId] = useState < string | null > (null);
 
   const handleToggle = (id: string) => {
     setOpenItemId(openItemId === id ? null : id);
