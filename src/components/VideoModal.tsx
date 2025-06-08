@@ -26,17 +26,17 @@ export default function VideoModal({ isOpen, closeModal, videoUrl }: VideoModalP
 
   return (
     <div className="fixed inset-0 z-50">
-      {/ Backdrop /}
+      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/75 transition-opacity duration-300"
         onClick={closeModal}
       />
 
-      {/ Modal content /}
+      {/* Modal content */}
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
           <div className="relative w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl transform overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-black shadow-xl transition-all">
-            {/ Close button /}
+            {/* Close button */}
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors"
@@ -56,14 +56,14 @@ export default function VideoModal({ isOpen, closeModal, videoUrl }: VideoModalP
               </svg>
             </button>
 
-            {/ Loading spinner /}
+            {/* Loading spinner */}
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-black">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white" />
               </div>
             )}
 
-            {/ Video player /}
+            {/* Video player */}
             <video
               className="w-full h-full aspect-video"
               controls
