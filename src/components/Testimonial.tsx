@@ -62,7 +62,7 @@ const Testimonial = () => {
     <section className="testimonial-section">
       <div className={`testimonial ${isAnimating ? 'fade' : ''}`}>
         <div className="content-wrapper">
-          <div className="quote-mark">"</div>
+          <div className="quote-mark">&ldquo;</div>
           <div className="quote-container">
             <div className="fixed-height-container">
               <div className={`quote-content ${isAnimating ? 'sliding' : ''}`}>

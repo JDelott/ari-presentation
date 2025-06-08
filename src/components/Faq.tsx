@@ -170,7 +170,7 @@ const Faq = () => {
           Still have questions?
         </h3>
         <p className="text-gray-600 mb-6">
-          Can't find the answer you're looking for? Feel free to reach out directly.
+          Can&apos;t find the answer you&apos;re looking for? Feel free to reach out directly.
         </p>
         <div className="flex justify-center gap-4">
           <CtaButton href="/contact" primary>Contact Me</CtaButton>
