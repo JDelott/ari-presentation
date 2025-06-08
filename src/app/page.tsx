@@ -3,7 +3,8 @@ import React from 'react'
 import Hero from "../components/Hero"
 import  Projects from '../components/Projects'
 import Skills  from '../components/Skills'
-import  Contact  from '../components/Contact'
+import Contact from '../components/Contact'
+import Testimonial from '../components/Testimonial'
 import  Faq  from '../components/Faq'
 
 export default function Home() {
@@ -14,8 +15,9 @@ export default function Home() {
         <Projects />
         <Skills />
         <Faq />
+        <Testimonial />
         <Contact />
       </main>
     </div>
   );
-}
+} 

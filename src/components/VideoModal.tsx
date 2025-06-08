@@ -1,6 +1,5 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 interface VideoModalProps {
   isOpen: boolean;
   closeModal: () => void;
@@ -8,46 +7,77 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ isOpen, closeModal, videoUrl }: VideoModalProps) {
-  return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={closeModal}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black/75" />
-        </Transition.Child>
+  const [isLoading, setIsLoading] = useState(true);
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+  useEffect(() => {
+    // Handle body scroll lock when modal is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50">
+      {/ Backdrop /}
+      <div
+        className="fixed inset-0 bg-black/75 transition-opacity duration-300"
+        onClick={closeModal}
+      />
+
+      {/ Modal content /}
+      <div className="fixed inset-0 overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
+          <div className="relative w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl transform overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-black shadow-xl transition-all">
+            {/ Close button /}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors"
             >
-              <Dialog.Panel className="w-full max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl transform overflow-hidden rounded-lg sm:rounded-xl lg:rounded-2xl bg-black shadow-xl transition-all">
-                <video
-                  className="w-full h-full aspect-video"
-                  controls
-                  autoPlay
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </Dialog.Panel>
-            </Transition.Child>
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/ Loading spinner /}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white" />
+              </div>
+            )}
+
+            {/ Video player /}
+            <video
+              className="w-full h-full aspect-video"
+              controls
+              autoPlay
+              playsInline
+              onLoadedData={() => setIsLoading(false)}
+              onError={() => setIsLoading(false)}
+            >
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </div>
   );
 }

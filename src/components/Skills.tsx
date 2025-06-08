@@ -3,36 +3,36 @@ import React from 'react';
 export default function Skills() {
   const skillCategories = [
     {
-      title: "E-commerce & AI",
+      title: "E-commerce & Artificial Intelligence",
       skills: [
-        { 
-          name: "AI Integration",
-          details: "Building AI agents and integrating Anthropic's Claude for personalized experiences"
+        {
+          name: "AI Solution Architecture",
+          details: "Designing and implementing advanced AI systems utilizing Anthropic's Claude for enhanced customer personalization and automated decision-making"
         },
-        { 
-          name: "Fashion E-commerce",
-          details: "AR-integrated fashion platforms with focus on user experience"
+        {
+          name: "Enterprise E-commerce Development",
+          details: "Creating sophisticated fashion retail platforms with augmented reality capabilities, focusing on conversion optimization and seamless user journeys"
         },
-        { 
-          name: "Mobile-First Design",
-          details: "Responsive, app-like web experiences optimized for all devices"
+        {
+          name: "Responsive Web Architecture",
+          details: "Developing progressive web applications with enterprise-grade performance optimization and cross-device compatibility"
         },
       ],
     },
     {
       title: "Frontend Excellence",
       skills: [
-        { 
+        {
           name: "React / Next.js",
-          details: "Advanced state management and performance optimization"
+          details: "Building scalable applications with advanced state management, server-side rendering, and performance optimization techniques"
         },
-        { 
+        {
           name: "TypeScript / JavaScript",
-          details: "Type-safe code with modern ES6+ features and patterns"
+          details: "Crafting robust, type-safe applications using modern ES6+ features, design patterns, and best practices"
         },
-        { 
+        {
           name: "UI/UX Implementation",
-          details: "Pixel-perfect designs with Tailwind CSS and animations"
+          details: "Creating responsive, accessible interfaces with Tailwind CSS, fluid animations, and attention to micro-interactions"
         },
       ],
     },

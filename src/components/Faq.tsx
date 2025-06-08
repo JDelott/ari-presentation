@@ -28,7 +28,7 @@ const FAQS: FaqItem[] = [
   {
     id: 'background',
     question: 'What is your background?',
-    answer: 'I am a software engineer with expertise in React, Next.js, and TypeScript. I have experience building modern web applications and I am passionate about creating beautiful and intuitive user interfaces.',
+    answer: 'As a Full Stack Software Engineer, I specialize in building modern web applications using React, Next.js, and TypeScript. With a strong foundation in frontend development, I craft performant, scalable solutions that combine elegant user interfaces with robust architecture. My passion lies in creating exceptional digital experiences that merge technical excellence with intuitive design principles. I stay current with emerging technologies and best practices to deliver innovative solutions that exceed client expectations.',
   },
   {
     id: 'projects',
@@ -43,7 +43,7 @@ const FAQS: FaqItem[] = [
 ];
 
 // Components
-const FaqAccordion: React.FC<FaqAccordionProps> = ({ item, isOpen, onToggle }) => {
+const FaqAccordion = ({ item, isOpen, onToggle }: FaqAccordionProps) => {
   const accordionId = `faq-answer-${item.id}`;
 
   return (
@@ -56,8 +56,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ item, isOpen, onToggle }) =
       >
         <h3 className="text-xl font-semibold text-gray-900">{item.question}</h3>
         <svg
-          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
-            }`}
+          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -85,12 +84,12 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ item, isOpen, onToggle }) =
   );
 };
 
-const CtaButton: React.FC<CtaButtonProps> = ({
+const CtaButton = ({
   href,
   children,
   primary = false,
   className = ''
-}) => {
+}: CtaButtonProps) => {
   const baseStyles = 'inline-flex items-center px-6 py-3 rounded-full font-semibold transition-all duration-200';
   const variantStyles = primary
     ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl'
@@ -106,7 +105,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
   );
 };
 
-const ArrowIcon: React.FC = () => (
+const ArrowIcon = () => (
   <svg
     className="ml-2 w-5 h-5"
     fill="none"
@@ -124,7 +123,7 @@ const ArrowIcon: React.FC = () => (
 );
 
 // Main Component
-const Faq: React.FC = () => {
+const Faq = () => {
   const [openItemId, setOpenItemId] = useState<string | null>(null);
 
   const handleToggle = (id: string) => {
@@ -156,12 +155,13 @@ const Faq: React.FC = () => {
 
       <div className="space-y-4 mb-12">
         {FAQS.map((faq) => (
-          <FaqAccordion
-            key={faq.id}
-            item={faq}
-            isOpen={openItemId === faq.id}
-            onToggle={() => handleToggle(faq.id)}
-          />
+          <div key={faq.id}>
+            <FaqAccordion
+              item={faq}
+              isOpen={openItemId === faq.id}
+              onToggle={() => handleToggle(faq.id)}
+            />
+          </div>
         ))}
       </div>
 
