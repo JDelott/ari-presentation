@@ -16,9 +16,12 @@ function TestComponent() {
       {/* Multiple quotes in one line */}
       <p>We're here to help you understand what's happening.</p>
 
+       {/* Multiple quotes in one line */}
+      <p>We're here to help you understand what's happening.</p>
+
       {/* Other characters that should be escaped */}
       <p>Use < and > symbols carefully</p>
-      <p>Q&A section coming soon</p>
+   
 
       {/* Correct versions (these should NOT show errors) */}
       <h2>Welcome to John&apos;s Portfolio</h2>
