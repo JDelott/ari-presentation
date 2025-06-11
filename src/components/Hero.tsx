@@ -14,9 +14,9 @@ export default function Hero() {
 
             {/* Header Section */}
             <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tighter">
-                <span className="bg-gradient-to-r from-slate-900 to-slate-700 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent">
-                  Hi, I&apos;m Jacob Lowell Delott, I am from LA.
+              <h1 className="text-5xl font-bold tracking-tight md:text-6xl">
+                <span className="bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-100 bg-clip-text text-transparent">
+                  Hi, I&apos;m Jacob Delott
                 </span>
               </h1>
               <div className="h-1 w-24 bg-slate-900 dark:bg-slate-100" />

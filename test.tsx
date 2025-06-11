@@ -20,7 +20,7 @@ function TestComponent() {
       <p>We're here to help you understand what's happening.</p>
 
       {/* Other characters that should be escaped */}
-      <p>Use < and > symbols carefully</p>
+
    
 
       {/* Correct versions (these should NOT show errors) */}

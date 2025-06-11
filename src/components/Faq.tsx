@@ -17,7 +17,7 @@ interface FaqAccordionProps {
 }
 
 interface CtaButtonProps {
-  href: string;
+  
   children: React.ReactNode;
   primary?: boolean;
   className?: string;
