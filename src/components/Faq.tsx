@@ -17,7 +17,7 @@ interface FaqAccordionProps {
 }
 
 interface CtaButtonProps {
-  
+  href: string;
   children: React.ReactNode;
   primary?: boolean;
   className?: string;
@@ -28,20 +28,19 @@ const FAQS: FaqItem[] = [
   {
     id: 'background',
     question: 'What is your background?',
-    answer: 'As a Full Stack Software Engineer, I specialize in building modern web applications using React, Next.js, and TypeScript. With a strong foundation in frontend development, I craft performant, scalable solutions that combine elegant user interfaces with robust architecture. My passion lies in creating exceptional digital experiences that merge technical excellence with intuitive design principles. I stay current with emerging technologies and best practices to deliver innovative solutions that exceed client expectations.',
+    answer: "I'm a Full Stack Software Engineer specializing in React, Next.js, and TypeScript. I focus on building performant web applications that combine clean user interfaces with solid architecture, always staying current with modern development practices."
   },
   {
     id: 'projects',
     question: 'What types of projects have you worked on?',
-    answer: 'My projects have included e-commerce platforms, dashboards, and data visualization tools. I particularly enjoy working on projects that involve complex UI interactions and data manipulation.',
+    answer: 'My projects have included e-commerce platforms, dashboards, and data visualization tools. I particularly enjoy working on projects that involve complex UI interactions and data manipulation.'
   },
   {
     id: 'approach',
     question: 'What is your approach to problem-solving?',
-    answer: 'I believe in breaking down complex problems into smaller, manageable pieces. I then use a structured approach to understand the requirements, explore potential solutions, and implement the best solution.',
-  },
+    answer: 'I believe in breaking down complex problems into smaller, manageable pieces. I then use a structured approach to understand the requirements, explore potential solutions, and implement the best solution.'
+  }
 ];
-
 // Components
 const FaqAccordion = ({ item, isOpen, onToggle }: FaqAccordionProps) => {
   const accordionId = `faq-answer-${item.id}`;
