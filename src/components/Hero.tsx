@@ -120,7 +120,7 @@ export default function Hero() {
         </div>
       </div>
 
-      // In Hero.tsx, update the VideoModal component:
+     
       <VideoModal
         isOpen={isVideoModalOpen}
         closeModal={() => setIsVideoModalOpen(false)}
