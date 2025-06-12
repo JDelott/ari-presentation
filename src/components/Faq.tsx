@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 // Types
 interface FaqItem {
@@ -16,7 +16,7 @@ interface FaqAccordionProps {
   onToggle: () => void;
 }
 
-interface CtaButtonProps {
+interface CtaButtonProps extends Omit<LinkProps, 'href'> {
   href: string;
   children: React.ReactNode;
   primary?: boolean;
@@ -41,6 +41,7 @@ const FAQS: FaqItem[] = [
     answer: 'I believe in breaking down complex problems into smaller, manageable pieces. I then use a structured approach to understand the requirements, explore potential solutions, and implement the best solution.'
   }
 ];
+
 // Components
 const FaqAccordion = ({ item, isOpen, onToggle }: FaqAccordionProps) => {
   const accordionId = `faq-answer-${item.id}`;
@@ -123,7 +124,7 @@ const ArrowIcon = () => (
 
 // Main Component
 const Faq = () => {
-  const [openItemId, setOpenItemId] = useState < string | null > (null);
+  const [openItemId, setOpenItemId] = useState<string | null>(null);
 
   const handleToggle = (id: string) => {
     setOpenItemId(openItemId === id ? null : id);
