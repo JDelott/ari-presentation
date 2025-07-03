@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 
 // Types
 interface FaqItem {
@@ -10,21 +10,22 @@ interface FaqItem {
   answer: string;
 }
 
-interface FaqAccordionProps {
+interface FaqCardProps {
   item: FaqItem;
-  isOpen: boolean;
-  onToggle: () => void;
+  index: number;
+  isActive: boolean;
+  onActivate: () => void;
 }
 
-interface CtaButtonProps extends Omit<LinkProps, 'href'> {
+interface CtaButtonProps {
   href: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   primary?: boolean;
   className?: string;
 }
 
 // Constants
-const FAQS: FaqItem[] = [
+const FAQS: readonly FaqItem[] = [
   {
     id: 'background',
     question: 'What is your background?',
@@ -40,46 +41,60 @@ const FAQS: FaqItem[] = [
     question: 'What is your approach to problem-solving?',
     answer: 'I believe in breaking down complex problems into smaller, manageable pieces. I then use a structured approach to understand the requirements, explore potential solutions, and implement the best solution.'
   }
-];
+] as const;
 
 // Components
-const FaqAccordion = ({ item, isOpen, onToggle }: FaqAccordionProps) => {
-  const accordionId = `faq-answer-${item.id}`;
-
+const FaqCard = ({ item, index, isActive, onActivate }: FaqCardProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-      <button
-        onClick={onToggle}
-        className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
-        aria-expanded={isOpen}
-        aria-controls={accordionId}
-      >
-        <h3 className="text-xl font-semibold text-gray-900">{item.question}</h3>
-        <svg
-          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-      {isOpen && (
-        <div
-          id={accordionId}
-          className="px-6 py-4 text-gray-700 bg-gray-50"
-          role="region"
-          aria-labelledby={`question-${item.id}`}
-        >
-          {item.answer}
+    <div
+      className={`group relative cursor-pointer transition-all duration-500 ${isActive ? 'scale-105' : 'hover:scale-102'
+        }`}
+      onClick={onActivate}
+    >
+      {/* Electric border effect */}
+      <div className={`absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
+        }`} style={{ padding: '2px' }}>
+        <div className="w-full h-full bg-white" />
+      </div>
+
+      {/* Main card content */}
+      <div className={`relative bg-white border-2 transition-all duration-300 ${isActive
+          ? 'border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.3)]'
+          : 'border-gray-200 hover:border-gray-300'
+        }`}>
+        {/* Header with number */}
+        <div className="flex items-start p-8">
+          <div className="flex-shrink-0 mr-6">
+            <div className={`w-12 h-12 border-2 flex items-center justify-center transition-all duration-300 ${isActive
+                ? 'border-cyan-400 bg-cyan-50'
+                : 'border-gray-300 group-hover:border-cyan-400'
+              }`}>
+              <span className={`text-lg font-medium transition-colors duration-300 ${isActive ? 'text-cyan-600' : 'text-gray-600'
+                }`}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <h3 className={`text-2xl font-semibold uppercase tracking-wide mb-4 transition-colors duration-300 ${isActive ? 'text-cyan-600' : 'text-gray-900'
+              }`}>
+              {item.question}
+            </h3>
+
+            <div className={`transition-all duration-500 ${isActive ? 'opacity-100 max-h-96' : 'opacity-60 max-h-20 overflow-hidden'
+              }`}>
+              <p className="text-gray-700 leading-relaxed">
+                {item.answer}
+              </p>
+            </div>
+          </div>
         </div>
-      )}
+
+        {/* Electric accent line */}
+        <div className={`h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'
+          }`} />
+      </div>
     </div>
   );
 };
@@ -90,24 +105,31 @@ const CtaButton = ({
   primary = false,
   className = ''
 }: CtaButtonProps) => {
-  const baseStyles = 'inline-flex items-center px-6 py-3 rounded-full font-semibold transition-all duration-200';
-  const variantStyles = primary
-    ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl'
-    : 'bg-gray-100 text-gray-800 hover:bg-gray-200';
-
   return (
     <Link
       href={href}
-      className={`${baseStyles} ${variantStyles} ${className}`}
+      className={`group relative inline-flex items-center justify-center px-8 py-4 font-medium text-sm uppercase tracking-wide transition-all duration-300 overflow-hidden ${primary
+          ? 'bg-cyan-400 text-black hover:bg-cyan-500 border-2 border-cyan-400 hover:border-cyan-500'
+          : 'bg-white text-gray-900 border-2 border-gray-300 hover:border-cyan-400 hover:text-cyan-600'
+        } ${className}`}
     >
-      {children}
+      {/* Electric glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Content */}
+      <span className="relative z-10 flex items-center">
+        {children || 'Click Here'}
+      </span>
+
+      {/* Bottom electric line */}
+      <div className="absolute bottom-0 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-500" />
     </Link>
   );
 };
 
 const ArrowIcon = () => (
   <svg
-    className="ml-2 w-5 h-5"
+    className="ml-4 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -116,80 +138,78 @@ const ArrowIcon = () => (
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={2}
-      d="M13 5l7 7-7 7M5 5l7 7-7 7"
+      strokeWidth={1}
+      d="M13 7l5 5m0 0l-5 5m5-5H6"
     />
   </svg>
 );
 
 // Main Component
 const Faq = () => {
-  const [openItemId, setOpenItemId] = useState<string | null>(null);
+  const [activeItemId, setActiveItemId] = useState<string | null>(FAQS[0].id);
 
-  const handleToggle = (id: string) => {
-    setOpenItemId(openItemId === id ? null : id);
+  const handleActivate = (id: string) => {
+    setActiveItemId(activeItemId === id ? null : id);
   };
 
   return (
-    <section className="max-w-4xl mx-auto py-16 px-4" aria-labelledby="faq-title">
-      <div className="text-center mb-12">
-        <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">
-          Got Questions?
-        </span>
-        <h2 id="faq-title" className="text-4xl font-bold text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-gray-600 text-lg mb-8">
-          Find answers to common questions about my experience and approach
-        </p>
-        <div className="flex justify-center gap-4 mb-12">
-          <CtaButton href="/contact" primary>
-            <span className="flex items-center">
-              Schedule a Call
-              <ArrowIcon />
-            </span>
-          </CtaButton>
-          <CtaButton href="/portfolio">View My Work</CtaButton>
-        </div>
-      </div>
+    <section className="relative min-h-screen bg-white py-20 px-6" aria-labelledby="faq-title">
+      {/* Subtle electric accents */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-30" />
 
-      <div className="space-y-4 mb-12">
-        {FAQS.map((faq) => (
-          <div key={faq.id}>
-            <FaqAccordion
-              item={faq}
-              isOpen={openItemId === faq.id}
-              onToggle={() => handleToggle(faq.id)}
-            />
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="inline-block relative">
+            <h2 id="faq-title" className="text-6xl font-light text-gray-900 mb-4 uppercase tracking-widest">
+              FAQ
+            </h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-px bg-cyan-400" />
           </div>
-        ))}
-      </div>
-
-      <div className="bg-blue-50 rounded-2xl p-8 text-center">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">
-          Still have questions?
-        </h3>
-        <p className="text-gray-600 mb-6">
-          Can&apos;t find the answer you&apos;re looking for? Feel free to reach out directly.
-        </p>
-        <div className="flex justify-center gap-4">
-          <CtaButton href="/contact" primary>Contact Me</CtaButton>
-          <CtaButton href="https://calendly.com/your-link">
-            Book a Discovery Call
-          </CtaButton>
+          <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto text-lg mt-8">
+            Essential information about my background and approach
+          </p>
         </div>
-      </div>
 
-      <div className="mt-12 text-center">
-        <p className="text-sm text-gray-500">
-          Want to stay updated?{' '}
-          <Link
-            href="/newsletter"
-            className="text-blue-600 hover:text-blue-700 underline"
-          >
-            Subscribe to my newsletter
-          </Link>
-        </p>
+        {/* FAQ Cards Grid */}
+        <div className="grid gap-6 mb-20">
+          {FAQS.map((item, index) => (
+            <FaqCard
+              key={item.id}
+              item={item}
+              index={index}
+              isActive={activeItemId === item.id}
+              onActivate={() => handleActivate(item.id)}
+            />
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center relative">
+          {/* Electric accent line */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent mb-12 opacity-60" />
+
+          <div className="relative">
+            <h3 className="text-3xl font-light text-gray-900 mb-6 uppercase tracking-wide">
+              Ready to collaborate?
+            </h3>
+            <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto mb-12">
+              I'm always interested in discussing new opportunities and challenging projects.
+              Let's connect and see how we can bring your ideas to life.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <CtaButton href="/contact" primary>
+                Get in Touch
+                <ArrowIcon />
+              </CtaButton>
+              <CtaButton href="/portfolio">
+                View Portfolio
+              </CtaButton>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
